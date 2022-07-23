@@ -12,6 +12,7 @@ namespace ver1._1
     {
         static void Main(string[] args)
         {
+            
             nhapSo();
             Console.Clear();
             Menu1();
@@ -362,6 +363,7 @@ namespace ver1._1
                                 Menu();
                                 Print();
                                 Console.ReadLine();
+                                Console.ForegroundColor = ConsoleColor.Cyan;
                                 break;
 
                             case 7:
