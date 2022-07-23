@@ -102,6 +102,7 @@ namespace ver1._1
             {
                 for (int j = i; j < board.Count; j++)
                 {
+                    
                     if (s1[i] > s1[j])
                     {
                         int tmp = s1[i];
@@ -112,18 +113,33 @@ namespace ver1._1
                     }
                 }
             }
-            Console.SetCursorPosition(x + 21, Y);
+            
+            int sss = 0;
             for (int i = 0; i < board.Count; i++)
             {
-                Console.Write(board[i] + " , ");
+                Console.SetCursorPosition((i * 3) + 30, 2);
+
+                Console.Write(board[i] + " | ");
+                
             }
+            Console.WriteLine();
             Console.Write(" ---> ");
-                for (int i = 0; i < board.Count; i++)
+
+            for (int i = 0; i < board.Count; i++)
             {
-                Thread.Sleep(700);
-                Console.Write(s1[i] + " , ");
+                Console.SetCursorPosition((i*3) + 30, 3);
+                Console.Write(board[i] + " | ");
+                sss = +3;
             }
-        
+            sss = 0;
+            for (int i = 0; i < board.Count; i++)
+            { 
+                Console.SetCursorPosition((i*3) + 30 + sss, 3);
+                Thread.Sleep(1500);
+                Console.Write(s1[i] + " | ");  
+            }
+            Console.WriteLine("Done !!!");
+
         }
         private static void Sort(int chon)
         {
@@ -343,7 +359,7 @@ namespace ver1._1
                                 Y = 6;
                                 break;
                             case 6:
-                                //Menu();
+                                Menu();
                                 Print();
                                 Console.ReadLine();
                                 break;
