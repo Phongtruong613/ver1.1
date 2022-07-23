@@ -63,10 +63,12 @@ namespace ver1._1
             Console.WriteLine("|      LUA CHON:    |");
             Console.WriteLine("+---------+---------+");
             Console.WriteLine("| 1.Nhap lai day so |");
-            Console.WriteLine("| 2.Sap xep         |");
-            Console.WriteLine("| 3.In ket qua      |");
+            Console.WriteLine("| 2.Sap xep tang dan|");
+            Console.WriteLine("| 3.Sap xep giam dan|");
+            Console.WriteLine("| 4.In ket qua      |");
+            Console.WriteLine("| 5.Demo sx tang dan|");
+            Console.WriteLine("| 6.Thoat           |");
             Console.WriteLine("+---------+---------+");
-            Console.WriteLine("Nhan ESC de thoat    ");
         }
         private static void Menu1()
         {
@@ -78,13 +80,16 @@ namespace ver1._1
             Console.BackgroundColor = ConsoleColor.Red;
             Console.WriteLine("| 1.Nhap lai day so |");
             Console.BackgroundColor = ConsoleColor.White;
-            Console.WriteLine("| 2.Sap xep         |");
-            Console.WriteLine("| 3.In ket qua      |");
+            Console.WriteLine("| 2.Sap xep tang dan|");
+            Console.WriteLine("| 3.Sap xep giam dan|");
+            Console.WriteLine("| 4.In ket qua      |");
+            Console.WriteLine("| 5.Demo sx tang dan|");
+            Console.WriteLine("| 6.Thoat           |");
             Console.WriteLine("+---------+---------+");
-            Console.WriteLine("Nhan ESC de thoat    ");
         }
         private static int[] s1 = new int[12];
-        private static void Sort()
+
+        private static void Demo()
         {
             Array.Clear(s1, 0, s1.Length);
 
@@ -110,12 +115,18 @@ namespace ver1._1
             Console.SetCursorPosition(x + 21, Y);
             for (int i = 0; i < board.Count; i++)
             {
+                Console.Write(board[i] + " , ");
+            }
+            Console.Write(" ---> ");
+                for (int i = 0; i < board.Count; i++)
+            {
+                Thread.Sleep(700);
                 Console.Write(s1[i] + " , ");
             }
-
+        
         }
 
-        private static void Print()
+        private static void Tangdan()
         {
             Array.Clear(s1, 0, s1.Length);
 
@@ -154,8 +165,48 @@ namespace ver1._1
                     Console.Write(" [ " + s1[i] + " ] ");
                 }
             }
-        }   
-  
+        }
+
+        private static void Giamdan()
+        {
+            Array.Clear(s1, 0, s1.Length);
+
+            for (int i = 0; i < board.Count; i++)
+            {
+                s1[i] = Convert.ToInt32(board[i]);
+            }
+
+            for (int i = 0; i < board.Count; i++)
+            {
+                for (int j = i; j < board.Count; j++)
+                {
+                    if (s1[i] < s1[j])
+                    {
+                        int tmp = s1[i];
+
+                        s1[i] = s1[j];
+
+                        s1[j] = tmp;
+                    }
+                }
+            }
+            Console.SetCursorPosition(x + 21, Y);
+            for (int i = 0; i < board.Count; i++)
+            {
+                if (i == 0 || i == n - 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.BackgroundColor = ConsoleColor.Green;
+                    Console.Write(" [ " + s1[i] + " ] ");
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.Write(" [ " + s1[i] + " ] ");
+                }
+            }
+        }
 
 
         private static int Y = 3;
@@ -188,16 +239,40 @@ namespace ver1._1
                                     Y--;
                                     Console.SetCursorPosition(x, Y);
                                     Console.BackgroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("| 2.Sap xep         |");
+                                    Console.WriteLine("| 2.Sap xep tang dan|");
                                     Console.BackgroundColor = ConsoleColor.White;
                                     break;
-
+                                case 6:
+                                    Menu();
+                                    Y--;
+                                    Console.SetCursorPosition(x, Y);
+                                    Console.BackgroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("| 3.Sap xep giam dan|");
+                                    Console.BackgroundColor = ConsoleColor.White;
+                                    break;
+                                case 7:
+                                    Menu();
+                                    Y--;
+                                    Console.SetCursorPosition(x, Y);
+                                    Console.BackgroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("| 4.In ket qua      |");
+                                    Console.BackgroundColor = ConsoleColor.White;
+                                    break;
+                                case 8:
+                                    Menu();
+                                    Y--;
+                                    Console.SetCursorPosition(x, Y);
+                                    Console.BackgroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("| 5.Demo sx tang dan|");
+                                    Console.BackgroundColor = ConsoleColor.White;
+                                    break;
+                             
                             }
                         }
                         break;
 
                     case ConsoleKey.DownArrow:
-                        if (Y != 5)
+                        if (Y != 8)
                         {
                             switch (Y)
                             {
@@ -206,7 +281,7 @@ namespace ver1._1
                                     Y++;
                                     Console.SetCursorPosition(x, Y);
                                     Console.BackgroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("| 2.Sap xep         |");
+                                    Console.WriteLine("| 2.Sap xep tang dan|");
                                     Console.BackgroundColor = ConsoleColor.White;
                                     break;
                                 case 4:
@@ -214,9 +289,34 @@ namespace ver1._1
                                     Y++;
                                     Console.SetCursorPosition(x, Y);
                                     Console.BackgroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("| 3.In ket qua      |");
+                                    Console.WriteLine("| 3.Sap xep giam dan|");
                                     Console.BackgroundColor = ConsoleColor.White;
                                     break;
+                                case 5:
+                                    Menu();
+                                    Y++;
+                                    Console.SetCursorPosition(x, Y);
+                                    Console.BackgroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("| 4.In ket qua      |");
+                                    Console.BackgroundColor = ConsoleColor.White;
+                                    break;
+                                case 6:
+                                    Menu();
+                                    Y++;
+                                    Console.SetCursorPosition(x, Y);
+                                    Console.BackgroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("| 5.Demo sx tang dan|");
+                                    Console.BackgroundColor = ConsoleColor.White;
+                                    break;
+                                case 7:
+                                    Menu();
+                                    Y++;
+                                    Console.SetCursorPosition(x, Y);
+                                    Console.BackgroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("| 6.Thoat           |");
+                                    Console.BackgroundColor = ConsoleColor.White;
+                                    break;
+                             
                             }
                         }
                         break;
@@ -224,16 +324,41 @@ namespace ver1._1
                     case ConsoleKey.Enter:
                         switch (Y)
                         {
+                            case 8:
+                                return;
+                                break;
                             case 3:
                                 nhapSo();
                                 Menu();
                                 break;
                             case 4:
-                                Sort();
+                                Console.SetCursorPosition(x + 21, Y);
+                                Console.Write("da sap xep xong");
+                                Menu();
+                                Thread.Sleep(700);
+                                Console.SetCursorPosition(x, 6);
+                                Console.BackgroundColor = ConsoleColor.Red;
+                                Console.WriteLine("| 4.In ket qua      |");
+                                Console.BackgroundColor = ConsoleColor.White;
                                 break;
+                            case 6:
+                                Tangdan();
                             case 5:
-                                Print();
+                                Console.SetCursorPosition(x + 21, Y);
+                                Console.Write("da sap xep xong");
+                                Menu();
+                                Thread.Sleep(700);
+                                Console.SetCursorPosition(x, 6);
+                                Console.BackgroundColor = ConsoleColor.Red;
+                                Console.WriteLine("| 4.In ket qua      |");
+                                Console.BackgroundColor = ConsoleColor.White;
+                                
                                 break;
+                            
+                            case 7:
+                                Demo();
+                                break;
+
                         }
                         break;
                     default: break;
