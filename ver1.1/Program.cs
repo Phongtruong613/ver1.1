@@ -53,7 +53,7 @@ namespace ver1._1
         }
         private static int x = 0;
         private static int y = 0;
-        private static int i, j, n;
+        private static int i, j, n, chon;
         private static ArrayList board = new ArrayList();
         private static void Menu()
         {
@@ -125,90 +125,72 @@ namespace ver1._1
             }
         
         }
-
-        private static void Tangdan()
+        private static void Sort(int chon)
         {
-            Array.Clear(s1, 0, s1.Length);
-
-            for (int i = 0; i < board.Count; i++)
+            if (chon == 0)
             {
-                s1[i] = Convert.ToInt32(board[i]);
-            }
+                Array.Clear(s1, 0, s1.Length);
 
-            for (int i = 0; i < board.Count; i++)
-            {
-                for (int j = i; j < board.Count; j++)
+                for (int i = 0; i < board.Count; i++)
                 {
-                    if (s1[i] > s1[j])
+                    s1[i] = Convert.ToInt32(board[i]);
+                }
+
+                for (int i = 0; i < board.Count; i++)
+                {
+                    for (int j = i; j < board.Count; j++)
                     {
-                        int tmp = s1[i];
+                        if (s1[i] > s1[j])
+                        {
+                            int tmp = s1[i];
 
-                        s1[i] = s1[j];
+                            s1[i] = s1[j];
 
-                        s1[j] = tmp;
+                            s1[j] = tmp;
+                        }
                     }
                 }
             }
-            Console.SetCursorPosition(x + 21, Y);
-            for (int i = 0; i < board.Count; i++)
+            else if (chon == 1)
             {
-                if (i == 0 || i == n - 1)
+                Array.Clear(s1, 0, s1.Length);
+
+                for (int i = 0; i < n; i++)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.BackgroundColor = ConsoleColor.Green;
-                    Console.Write(" [ " + s1[i] + " ] ");
+                    s1[i] = Convert.ToInt32(board[i]);
                 }
-                else
+
+                for (int i = 0; i < n; i++)
                 {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.Write(" [ " + s1[i] + " ] ");
-                }
-            }
-        }
-
-        private static void Giamdan()
-        {
-            Array.Clear(s1, 0, s1.Length);
-
-            for (int i = 0; i < board.Count; i++)
-            {
-                s1[i] = Convert.ToInt32(board[i]);
-            }
-
-            for (int i = 0; i < board.Count; i++)
-            {
-                for (int j = i; j < board.Count; j++)
-                {
-                    if (s1[i] < s1[j])
+                    for (int j = i; j < n; j++)
                     {
-                        int tmp = s1[i];
+                        if (s1[i] < s1[j])
+                        {
+                            int tmp = s1[i];
 
-                        s1[i] = s1[j];
+                            s1[i] = s1[j];
 
-                        s1[j] = tmp;
+                            s1[j] = tmp;
+                        }
                     }
                 }
-            }
-            Console.SetCursorPosition(x + 21, Y);
-            for (int i = 0; i < board.Count; i++)
+            } 
+            
+        }
+        private static void Print()
+        {
+            for (int i = 0; i < n; i++)
             {
-                if (i == 0 || i == n - 1)
-                {
+               
+                
+                    Console.SetCursorPosition((i*7) + 21, Y);
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.BackgroundColor = ConsoleColor.Green;
                     Console.Write(" [ " + s1[i] + " ] ");
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.Write(" [ " + s1[i] + " ] ");
-                }
+                
+                
             }
         }
-
-
         private static int Y = 3;
         
 
@@ -326,42 +308,53 @@ namespace ver1._1
                         {
                             case 8:
                                 return;
-                                break;
+                                
                             case 3:
                                 nhapSo();
                                 Menu();
                                 break;
                             case 4:
+                                chon = 0;
+                                Sort(chon);
                                 Console.SetCursorPosition(x + 21, Y);
                                 Console.Write("da sap xep xong");
-                                Menu();
-                                Thread.Sleep(700);
-                                Console.SetCursorPosition(x, 6);
-                                Console.BackgroundColor = ConsoleColor.Red;
-                                Console.WriteLine("| 4.In ket qua      |");
-                                Console.BackgroundColor = ConsoleColor.White;
-                                break;
-                            case 6:
-                                Tangdan();
-                            case 5:
-                                Console.SetCursorPosition(x + 21, Y);
-                                Console.Write("da sap xep xong");
-                                Menu();
-                                Thread.Sleep(700);
-                                Console.SetCursorPosition(x, 6);
-                                Console.BackgroundColor = ConsoleColor.Red;
-                                Console.WriteLine("| 4.In ket qua      |");
-                                Console.BackgroundColor = ConsoleColor.White;
                                 
+                                Menu();
+                                
+                                Console.SetCursorPosition(x, 6);
+                                Console.BackgroundColor = ConsoleColor.Red;
+                                Console.WriteLine("| 4.In ket qua      |");
+                                Y = 6;
+                                Console.BackgroundColor = ConsoleColor.White;
                                 break;
                             
+                            case 5:
+                                chon = 1;
+                                Sort(chon);
+                                Console.SetCursorPosition(x + 21, Y);
+                                Console.Write("da sap xep xong");
+                                
+                                Menu();
+                                
+                                Console.SetCursorPosition(x, 6);
+                                Console.BackgroundColor = ConsoleColor.Red;
+                                Console.WriteLine("| 4.In ket qua      |");
+                                Console.BackgroundColor = ConsoleColor.White;
+                                Y = 6;
+                                break;
+                            case 6:
+                                //Menu();
+                                Print();
+                                Console.ReadLine();
+                                break;
+
                             case 7:
                                 Demo();
                                 break;
 
                         }
                         break;
-                    default: break;
+                   
                 }
             }
         }
